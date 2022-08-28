@@ -1,7 +1,7 @@
+import { cloneElement, CSSProperties, forwardRef, ReactElement, useEffect, useRef } from "react";
 import { FixedSizeListProps, VariableSizeList } from "react-window";
 import InfiniteLoader from "react-window-infinite-loader";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { cloneElement, CSSProperties, forwardRef, ReactElement, ReactNode, useEffect, useRef } from "react";
 
 export interface VirtualListProps
 	extends Omit<FixedSizeListProps, "children" | "innerElementType" | "height" | "width" | "itemSize" | "itemCount"> {
@@ -11,7 +11,6 @@ export interface VirtualListProps
 	getItemsHeight?: (index: number) => number;
 	itemSize?: number;
 	loadNextPage: () => void;
-	Header?: ReactNode;
 	Row: ReactElement;
 }
 
@@ -23,7 +22,6 @@ export interface VirtualListItemProps {
 /**
  * The Inner component of the virtual list. This is the "Magic".
  * Capture what would have been the top elements position and apply it to the list.
- * Render an optional header.
  **/
 const Inner = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(function Inner({ children, ...rest }, ref) {
 	return (
